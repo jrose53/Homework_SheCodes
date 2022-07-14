@@ -4,10 +4,11 @@ body {
 
 h1 {
   color: #6b9080;
-  font-size: 24px;
-  font-weight: 100;
+  font-size: 25px;
+  font-weight: 650;
   line-height: 28px;
   margin: 0;
+  padding-bottom: 3px;
 }
 
 ul {
@@ -66,4 +67,17 @@ li {
 .weather-forecast-date {
   font-size: 16px;
   opacity: 0.5;
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #6b9080 !important;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited {
+  background-color: #6b9080 !important;
 }
