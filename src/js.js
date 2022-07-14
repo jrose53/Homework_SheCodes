@@ -97,49 +97,15 @@ function getForecast(coordinates) {
 }
 
 function displayAir(response) {
-  let quality = response.list.main.aqi;
-  let forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `<div class="col-2">
-                <div class="weather-forecast-date">${formatDay(
-                  forecastDay.dt
-                )}</div>
-                <img
-                  src="http://openweathermap.org/img/wn/${
-                    forecastDay.weather[0].icon
-                  }@2x.png""
-                  alt=""
-                  width="42"
-                />
-                <div class="weather-forecast-temperature">
-                  <span class="weather-forecast-temperature-max">${Math.round(
-                    forecastDay.temp.max
-                  )}° </span>
-
-                  <span class="weather-forecast-temperature-min"> ${Math.round(
-                    forecastDay.temp.min
-                  )}° </span>
-
-          
-          </div>
-        </div>`;
-    }
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
+  let qualityElement = document.querySelector("#quality");
+  qualityElement.innerHTML = response.list.main.aqi;
 }
 
-function airQuality(coordinates) {
+function airQuality(response) {
   let apiKey = "7e32fc39f5c7e55a0c646081413f1f5b";
-  let apiUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat= ${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}
+  let apiUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${response.coord[0]}&lon=${response.coord[1]}&appid=${apiKey}
 `;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayAir);
 }
 
 function displayTemperature(response) {
