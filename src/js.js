@@ -120,12 +120,16 @@ function displayTemperature(response) {
   getForecast(response.data.coord);
 }
 
-function search(event) {
-  event.preventDefault();
+function search(city) {
   let apiKey = "7e32fc39f5c7e55a0c646081413f1f5b";
-  let city = document.querySelector("#city-input").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
 }
 
 function getCurrentLocation() {
@@ -143,7 +147,9 @@ function searchLocation(position) {
 let celsiusTemperature = null;
 
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+search("Paris");
