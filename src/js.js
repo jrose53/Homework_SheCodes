@@ -97,8 +97,8 @@ function getForecast(coordinates) {
 }
 
 function displayAir(response) {
-  let qualityElement = document.querySelector("#quality");
-  qualityElement.innerHTML = response.list.main.aqi;
+  let airElement = document.querySelector("#quality");
+  airElement.innerHTML = response.data.list.main;
 }
 
 function airQuality(response) {
@@ -109,6 +109,7 @@ function airQuality(response) {
 }
 
 function displayTemperature(response) {
+  console.log(response.airQuality);
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
@@ -130,6 +131,7 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response.data.coord);
+  airQuality(response.list.main.aqi);
 }
 
 function search(city) {
