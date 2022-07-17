@@ -98,13 +98,12 @@ function getForecast(coordinates) {
 
 function displayAir(response) {
   let airElement = document.querySelector("#quality");
-  airElement.innerHTML = response.data.list.main;
+  airElement.innerHTML = response.data.list[0].main.aqi;
 }
 
-function airQuality(response) {
+function airQuality(coordinates) {
   let apiKey = "7e32fc39f5c7e55a0c646081413f1f5b";
-  let apiUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${response.coord[0]}&lon=${response.coord[1]}&appid=${apiKey}
-`;
+  let apiUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayAir);
 }
 
@@ -131,7 +130,8 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response.data.coord);
-  airQuality(response.list.main.aqi);
+
+  airQuality(response.data.coord);
 }
 
 function search(city) {
