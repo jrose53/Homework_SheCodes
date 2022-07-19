@@ -99,6 +99,8 @@ function getForecast(coordinates) {
 function displayAir(response) {
   let airElement = document.querySelector("#quality");
   airElement.innerHTML = response.data.list[0].main.aqi;
+  let quality = ["very bad", "bad", "fair", "good", "very good"];
+  return quality[airElement];
 }
 
 function airQuality(coordinates) {
@@ -108,7 +110,6 @@ function airQuality(coordinates) {
 }
 
 function displayTemperature(response) {
-  console.log(response.airQuality);
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
