@@ -98,9 +98,17 @@ function getForecast(coordinates) {
 
 function displayAir(response) {
   let airElement = document.querySelector("#quality");
-  airElement.innerHTML = response.data.list[0].main.aqi;
-  let quality = ["very bad", "bad", "fair", "good", "very good"];
-  return quality[airElement];
+  if (response.data.list[0].main.aqi === 1) {
+    airElement.innerHTML = "very bad";
+  } else if (response.data.list[0].main.aqi === 2) {
+    airElement.innerHTML = "bad";
+  } else if (response.data.list[0].main.aqi === 3) {
+    airElement.innerHTML = "fair";
+  } else if (response.data.list[0].main.aqi === 4) {
+    airElement.innerHTML = "good";
+  } else if (response.data.list[0].main.aqi === 5) {
+    airElement.innerHTML = "very good";
+  }
 }
 
 function airQuality(coordinates) {
